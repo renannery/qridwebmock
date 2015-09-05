@@ -1,0 +1,1334 @@
+FORMAT: X-1A
+
+#QRid API Documentation
+The QRid API is based on REST principles, all you need to use it is your QRid account. You must be authenticated and call HTTPs requests on the URLs listed below. 
+This documentation covers the core resources you can used to manipulate objects on the QRid Platform. Review the information basic instructions if you are new to APIs.
+
+>**Note:** We strongly discourage QRid customers from using the apiary Traffic Inspector. Any information you submit through Traffic Inspector is routed through a 3rd party, and is unsecured. If you choose to use Traffic Inspector against our recommendation, use your QRid TESTING credentials for API calls. _Never_ use your production credentials.
+
+##Allowed HTTPs requests:
+
+- `POST` - Creates or updates a resource
+- `PUT` - Updates a resource
+- `GET` - Retrieves a resource or list of resources
+- `DELETE` - Delete a resource
+
+##Typical Server Responses
+
+- 200 `OK` - The request was successful (some API calls may return 201 instead).
+- 201 `Created` - The request was successful and a resource was created.
+- 204 `No Content` - The request was successful but there is no representation to return (that is, the response is empty).
+- 400 `Bad Request` - The request could not be understood or was missing required parameters.
+- 401 `Unauthorized` - Authentication failed or user does not have permissions for the requested operation.
+- 403 `Forbidden` - Access denied.
+- 404 `Not Found` - Resource was not found.
+- 405 `Method Not Allowed` - Requested method is not supported for the specified resource.
+- 429 `Too Many Requests` - Exceeded QRid API limits. Pause requests, wait one minute, and try again. 
+- 503 `Service Unavailable` - The service is temporary unavailable (e.g. scheduled Platform Maintenance). Try again later.
+
+# Group Users
+<a id="Users" ></a>
+
+QRid authentication uses login and password, afterwards returns a access token: 
+
+## /qrid/v1/users/login
+### POST
+Log in.
++ Request (application/json)
+    + Headers
+
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
+    + Body
+
+            {
+                "postUserLogin":{
+                    "login":"user@company.com",
+                    "password":"YourPassword"
+                }
+            }
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+                "accessToken": "SASD!@#ASXAS-LOGIN",
+                "badgeName": "Carolina",
+                "birthday": "2011-08-10",
+                "cellphone": "55 11 99527-4477",
+                "companyName": "Origami",
+                "country": "Brasil",
+                "cpf": "34028342864",
+                "created": "2011-08-10 08:37:46",
+                "email": "angelicalogin@gmail.com",
+                "firstName": "Carolina",
+                "gender": true,
+                "isBrazilian": true,
+                "lastName": "Santos",
+                "location": {
+                    "city": "São Paulo",
+                    "complement": "apt 805",
+                    "district": "Itaim Bibi",
+                    "latitude": -23.557577,
+                    "longitude": -46.677674,
+                    "number": "123",
+                    "state": "SP",
+                    "street": "R.Teodoro Sampaio",
+                    "zip": "05405-206"
+                },
+                "login": "angelicalogin@gmail.com",
+                "passportNumber": "ZE184226B",
+                "password": "SenhaSegura",
+                "photo": "http://api.randomuser.me/portraits/med/women/86.jpg",
+                "position": "CEO",
+                "qrcodePath": "http://i.imgur.com/r7sl8or.png",
+                "telephone": "55 11 2546-1166",
+                "timezone": "UTC",
+                "updated": "2014-04-11 01:18:07",
+                "userId": 11111
+            }
+            
+## /qrid/v1/users/register
+### POST
+Register.
++ Request (application/json)
+    + Headers
+
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
+    + Body
+
+            {
+                "badgeName": "Carolina",
+                "birthday": "2011-08-10",
+                "cellphone": "55 11 99527-4477",
+                "companyName": "Origami",
+                "country": "Brasil",
+                "cpf": "34028342864",
+                "created": "2011-08-10 08:37:46",
+                "email": "angelicaregistro@gmail.com",
+                "firstName": "Carolina",
+                "gender": true,
+                "isBrazilian": true,
+                "lastName": "Santos",
+                "location": {
+                    "city": "São Paulo",
+                    "complement": "apt 805",
+                    "district": "Itaim Bibi",
+                    "latitude": -23.557577,
+                    "longitude": -46.677674,
+                    "number": "123",
+                    "state": "SP",
+                    "street": "R.Teodoro Sampaio",
+                    "zip": "05405-206"
+                },
+                "login": "angelicaregistro@gmail.com",
+                "passportNumber": "ZE184226B",
+                "password": "SenhaSegura",
+                "photo": "http://api.randomuser.me/portraits/med/women/84.jpg",
+                "position": "CEO",
+                "qrcodePath": "http://i.imgur.com/r7sl8or.png",
+                "telephone": "55 11 2546-1166",
+                "timezone": "UTC",
+                "updated": "2014-04-11 01:18:07",
+                "userId": 11111
+            }
+
++ Response 201 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+                "accessToken": "SASD!@#ASXAS-REGISTRO",
+                "badgeName": "Carolina",
+                "birthday": "2011-08-10",
+                "cellphone": "55 11 99527-4477",
+                "companyName": "Origami",
+                "country": "Brasil",
+                "cpf": "34028342864",
+                "created": "2011-08-10 08:37:46",
+                "email": "angelicaregistro@gmail.com",
+                "firstName": "Carolina",
+                "gender": true,
+                "isBrazilian": true,
+                "lastName": "Santos",
+                "location": {
+                    "city": "São Paulo",
+                    "complement": "apt 805",
+                    "district": "Itaim Bibi",
+                    "latitude": -23.557577,
+                    "longitude": -46.677674,
+                    "number": "123",
+                    "state": "SP",
+                    "street": "R.Teodoro Sampaio",
+                    "zip": "05405-206"
+                },
+                "login": "angelicaregistro@gmail.com",
+                "passportNumber": "ZE184226B",
+                "password": "SenhaSegura",
+                "photo": "http://api.randomuser.me/portraits/med/women/84.jpg",
+                "position": "CEO",
+                "qrcodePath": "http://i.imgur.com/r7sl8or.png",
+                "telephone": "55 11 2546-1166",
+                "timezone": "UTC",
+                "updated": "2014-04-11 01:18:07",
+                "userId": 11111
+            }
+            
+            
+## /qrid/v1/users/register
+### PUT
+Register update.
++ Request (application/json)
+    + Headers
+
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
+    + Body
+
+            {
+                "accessToken": "SASD!@#ASXAS-LOGIN",
+                "badgeName": "Carolina",
+                "birthday": "2011-08-10",
+                "cellphone": "55 11 99527-4477",
+                "companyName": "Origami",
+                "country": "Brasil",
+                "cpf": "34028342864",
+                "created": "2011-08-10 08:37:46",
+                "email": "angelica@gmail.com",
+                "firstName": "Carolina",
+                "gender": true,
+                "isBrazilian": true,
+                "lastName": "Santos",
+                "location": {
+                    "city": "São Paulo",
+                    "complement": "apt 805",
+                    "district": "Itaim Bibi",
+                    "latitude": -23.557577,
+                    "longitude": -46.677674,
+                    "number": "123",
+                    "state": "SP",
+                    "street": "R.Teodoro Sampaio",
+                    "zip": "05405-206"
+                },
+                "login": "angelicalogin@gmail.com",
+                "passportNumber": "ZE184226B",
+                "password": "SenhaSegura",
+                "photo": "http://api.randomuser.me/portraits/med/women/86.jpg",
+                "position": "CEO",
+                "qrcodePath": "http://i.imgur.com/r7sl8or.png",
+                "telephone": "55 11 2546-1166",
+                "timezone": "UTC",
+                "updated": "2014-04-11 01:18:07",
+                "userId": 11111
+            }
+
++ Response 201 (application/json)
+    + Headers
+            
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+                "accessToken": "SASD!@#ASXAS-UPDATE",
+                "badgeName": "Carolina",
+                "birthday": "2011-08-10",
+                "cellphone": "55 11 99527-4477",
+                "companyName": "Origami",
+                "country": "Brasil",
+                "cpf": "34028342864",
+                "created": "2011-08-10 08:37:46",
+                "email": "angelicaupdate@gmail.com",
+                "firstName": "Carolina",
+                "gender": true,
+                "isBrazilian": true,
+                "lastName": "Santos",
+                "location": {
+                    "city": "São Paulo",
+                    "complement": "apt 805",
+                    "district": "Itaim Bibi",
+                    "latitude": -23.557577,
+                    "longitude": -46.677674,
+                    "number": "123",
+                    "state": "SP",
+                    "street": "R.Teodoro Sampaio",
+                    "zip": "05405-206"
+                },
+                "login": "angelicaupdate@gmail.com",
+                "passportNumber": "ZE184226B",
+                "password": "SenhaSegura",
+                "photo": "http://api.randomuser.me/portraits/med/women/82.jpg",
+                "position": "CEO",
+                "qrcodePath": "http://i.imgur.com/r7sl8or.png",
+                "telephone": "55 11 2546-1166",
+                "timezone": "UTC",
+                "updated": "2014-04-11 01:18:07",
+                "userId": 11111
+            }
+            
+            
+            
+## /qrid/v1/users/forgotpassword
+### POST
+Register update.
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
+    + Body
+
+            {
+                "email": "angelica@gmail.com"
+            }
+
++ Response 201 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+                "response": "Sua senha foi enviada para seu email"
+            }
+            
+            
+            
+            
+## /qrid/v1/users/{id}
+### POST
+Return user profile 
+
++ Parameters
+    + id (required, integer) ... QRid id
+    
++ Request (application/json)
+    + Headers
+
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-Br
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+                "accessToken": "SASD!@#ASXAS-UPDATE",
+                "badgeName": "Carolina",
+                "birthday": "2011-08-10",
+                "cellphone": "55 11 99527-4477",
+                "companyName": "Origami",
+                "country": "Brasil",
+                "cpf": "34028342864",
+                "created": "2011-08-10 08:37:46",
+                "email": "angelicaupdate@gmail.com",
+                "firstName": "Carolina",
+                "gender": true,
+                "isBrazilian": true,
+                "lastName": "Santos",
+                "location": {
+                    "city": "São Paulo",
+                    "complement": "apt 805",
+                    "district": "Itaim Bibi",
+                    "latitude": -23.557577,
+                    "longitude": -46.677674,
+                    "number": "123",
+                    "state": "SP",
+                    "street": "R.Teodoro Sampaio",
+                    "zip": "05405-206"
+                },
+                "login": "angelicaupdate@gmail.com",
+                "passportNumber": "ZE184226B",
+                "password": "SenhaSegura",
+                "photo": "http://api.randomuser.me/portraits/med/women/82.jpg",
+                "position": "CEO",
+                "qrcodePath": "http://i.imgur.com/r7sl8or.png",
+                "telephone": "55 11 2546-1166",
+                "timezone": "UTC",
+                "updated": "2014-04-11 01:18:07",
+                "userId": 11111
+            }
+            
+## /qrid/v1/users/{id}/interests
+### GET
+Return user's interests
+
++ Parameters
+    + id (required, integer) ... QRid user id
+    
++ Request (application/json)
+    + Headers
+
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-Br
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+
+            [
+                {
+                   "id": 1,
+                   "description" : "Anime",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 2,
+                   "description" : "Alimentação",
+                   "isChecked" : false,
+                   "isPartner" : false
+                },
+                {
+                   "id": 3,
+                   "description" : "Tecnologia",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 4,
+                   "description" : "TV",
+                   "isChecked" : false,
+                   "isPartner" : false
+                },
+                {
+                   "id": 5,
+                   "description" : "Cult",
+                   "isChecked" : false,
+                   "isPartner" : false
+                },
+                {
+                   "id": 6,
+                   "description" : "Rock",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 7,
+                   "description" : "Android",
+                   "isChecked" : false,
+                   "isPartner" : false
+                },
+                {
+                   "id": 8,
+                   "description" : "iOS",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 9,
+                   "description" : "Jazz",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 10,
+                   "description" : "HQ",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 11,
+                   "description" : "Bob's",
+                   "isChecked" : true,
+                   "isPartner" : true
+                },
+                {
+                   "id": 12,
+                   "description" : "Marisa",
+                   "isChecked" : false,
+                   "isPartner" : true
+                },
+                {
+                   "id": 13,
+                   "description" : "Pixar",
+                   "isChecked" : true,
+                   "isPartner" : true
+                },
+                {
+                   "id": 14,
+                   "description" : "Shopping Tatuapé",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 15,
+                   "description" : "Shopping Villa Lobos",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 16,
+                   "description" : "Criança",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 17,
+                   "description" : "Homem",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 18,
+                   "description" : "Mulher",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 19,
+                   "description" : "Idosos",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 20,
+                   "description" : "Medicina",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 21,
+                   "description" : "Música Acústica",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 22,
+                   "description" : "Samba Rock",
+                   "isChecked" : true,
+                   "isPartner" : false
+                },
+                {
+                   "id": 23,
+                   "description" : "Cinema",
+                   "isChecked" : true,
+                   "isPartner" : false
+                }
+            ]
+            
+## /qrid/v1/users/{id}/interests
+### POST
+Save user's interests
+
++ Parameters
+    + id (required, integer) ... QRid user id
+    
++ Request (application/json)
+    + Headers
+
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-Br
+    + Body
+
+            [
+                {
+                   "id": 1,
+                   "isChecked" : true
+                },
+                {
+                   "id": 2,
+                   "isChecked" : false
+                },
+                {
+                   "id": 3,
+                   "isChecked" : true
+                },
+                {
+                   "id": 4,
+                   "isChecked" : false
+                },
+                {
+                   "id": 5,
+                   "isChecked" : true
+                },
+                {
+                   "id": 6,
+                   "isChecked" : true
+                },
+                {
+                   "id": 7,
+                   "isChecked" : true
+                },
+                {
+                   "id": 8,
+                   "isChecked" : true
+                }
+            ]
+            
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    
+
+# Group Locals
+<a id="Locals" ></a>
+
+## /qrid/v1/locals
+### GET
+Locals
+#####Additional Information 
+Return a list off all QRid partners, also refered as Places, Locals or Events
+
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
++ Response 200 (application/json)
+    + Headers
+            
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+                "locals": [
+                    {
+                       "id": 123341,
+                       "name" : "Bourbon Shopping",
+                       "participants" : 12,
+                       "subTitleDescription" : "Reguli reiciendam",
+                       "participants" : 30,
+                       "coverPath" : "http://i.imgur.com/ePV83cy.jpg",
+                       "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href='http://loripsum.net/' target='_blank'>In schola desinis.</a> Cur igitur, inquam, res tam dissimiles eodem nomine appellas? Duo Reges: constructio interrete. Stoici autem, quod finem bonorum in una virtute ponunt, similes sunt illorum; Nihil ad rem! Ne sit sane; Quo plebiscito decreta a senatu est consuli quaestio Cn. Dic in quovis conventu te omnia facere, ne doleas. Naturales divitias dixit parabiles esse, quod parvo esset natura contenta. Itaque a sapientia praecipitur se ipsam, si usus sit, sapiens ut relinquat. Quamquam haec quidem praeposita recte et reiecta dicere licebit. </p>",
+                       "startDate": "17:00",
+                       "endDate": "22:00",
+                       "isPartner": true,
+                       "location" : {
+                            "street" : "R.Teodoro Sampaio",
+                            "number" : "123",
+                            "district" : "Itaim Bibi",
+                            "city" : "São Paulo",
+                            "state": "SP",
+                            "zip" : "05405-000",
+                            "complement" : "apt 805",
+                            "latitude" : -23.557577,
+                            "longitude" : -46.677674
+                        }
+                   },
+                   {
+                       "id": 12412,
+                       "name" : "15. Congresso de Petshops",
+                       "participants" : 30,
+                       "subTitleDescription" : "Reguli reiciendam",
+                       "participants" : 30,
+                       "coverPath" : "http://i.imgur.com/ePV83cy.jpg",
+                       "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href='http://loripsum.net/' target='_blank'>In schola desinis.</a> Cur igitur, inquam, res tam dissimiles eodem nomine appellas? Duo Reges: constructio interrete. Stoici autem, quod finem bonorum in una virtute ponunt, similes sunt illorum; Nihil ad rem! Ne sit sane; Quo plebiscito decreta a senatu est consuli quaestio Cn. Dic in quovis conventu te omnia facere, ne doleas. Naturales divitias dixit parabiles esse, quod parvo esset natura contenta. Itaque a sapientia praecipitur se ipsam, si usus sit, sapiens ut relinquat. Quamquam haec quidem praeposita recte et reiecta dicere licebit. </p>",
+                       "startDate": "17:00",
+                       "endDate": "22:00",
+                       "isPartner": false,
+                       "location" : {
+                            "street" : "R.Teodoro Sampaio",
+                            "number" : "123",
+                            "district" : "Itaim Bibi",
+                            "city" : "São Paulo",
+                            "state": "SP",
+                            "zip" : "05405-000",
+                            "complement" : "apt 805",
+                            "latitude" : -23.557577,
+                            "longitude" : -46.677674
+                   }]
+                }
+            }
+
+## /qrid/v1/locals/events?{userId,lat,long}
+### GET
+Events
+#####Additional Information 
+Return a list off all Events
+
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
++ Response 200 (application/json)
+    + Headers
+            
+            Content-Language: pt-BR
+            
+    + Body
+
+            
+                [
+                    {
+                       "id": 1233412,
+                       "name" : "VI Mobile Conf",
+                       "subTitleDescription" : "Tollenda est",
+                       "participants" : 12,
+                       "coverPath" : "http://i.imgur.com/ePV83cy.jpg",
+                       "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egone non intellego, quid sit don Graece, Latine voluptas? Quorum sine causa fieri nihil putandum est. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egone non intellego, quid sit don Graece, Latine voluptas? Quorum sine causa fieri nihil putandum est. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egone non intellego, quid sit don Graece, Latine voluptas? Quorum sine causa fieri nihil putandum est. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> </p>",
+                       "startDate": "09:00",
+                       "endDate": "22:00",
+                       "isPartner": false,
+                       "location" : {
+                            "street" : "Av. Dom Pedro I",
+                            "number" : "1525",
+                            "district" : "",
+                            "city" : "Guarujá",
+                            "state": "SP",
+                            "zip" : "11440-001",
+                            "complement" : "",
+                            "latitude" : 41.86854,
+                            "longitude" : -0.7901334
+                        }
+                   },
+                   {
+                       "id": 124123,
+                       "name" : "20. Congresso de Petshops",
+                       "subTitleDescription" : "Reguli reiciendam",
+                       "participants" : 30,
+                       "coverPath" : "http://lorempixel.com/400/200/business/",
+                       "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. <a href='http://loripsum.net/' target='_blank'>In schola desinis.</a> Cur igitur, inquam, res tam dissimiles eodem nomine appellas? Duo Reges: constructio interrete. Stoici autem, quod finem bonorum in una virtute ponunt, similes sunt illorum; Nihil ad rem! Ne sit sane; Quo plebiscito decreta a senatu est consuli quaestio Cn. Dic in quovis conventu te omnia facere, ne doleas. Naturales divitias dixit parabiles esse, quod parvo esset natura contenta. Itaque a sapientia praecipitur se ipsam, si usus sit, sapiens ut relinquat. Quamquam haec quidem praeposita recte et reiecta dicere licebit. </p>",
+                       "startDate": "17:00",
+                       "endDate": "22:00",
+                       "isPartner": false,
+                       "location" : {
+                            "street" : "Avenida dos Cafés",
+                            "number" : "123",
+                            "district" : "Itaim Bibi",
+                            "city" : "Rio de Janeiro",
+                            "state": "RJ",
+                            "zip" : "05405-000",
+                            "complement" : "apt 805",
+                            "latitude" : -23.557577,
+                            "longitude" : -46.677674
+                        }
+                    },
+                    {
+                       "id": 3129085,
+                       "name" : "Feira do Agronegócio 2015",
+                       "subTitleDescription" : "Tum Torquatus: Prorsus",
+                       "participants" : 2,
+                       "coverPath" : "http://lorempixel.com/400/200/business/",
+                       "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+                       "startDate": "08:00",
+                       "endDate": "22:00",
+                       "isPartner": false,
+                       "location" : {
+                            "street" : "Rua das Esplanadas",
+                            "number" : "123",
+                            "district" : "Itaim Bibi",
+                            "city" : "Goiania",
+                            "state": "GO",
+                            "zip" : "05405-000",
+                            "complement" : "apt 805",
+                            "latitude" : -23.557577,
+                            "longitude" : -46.677674
+                        }
+                    }]
+            
+
+## /qrid/v1/locals/partners?{userId,lat,long}
+### GET
+Partners
+#####Additional Information 
+Return a list off all Partners
+
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
++ Response 200 (application/json)
+    + Headers
+            
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+                [
+                    {
+                       "id": 31211,
+                       "name" : "Shopping Center 3",
+                       "subTitleDescription" : "Tum Torquatus: Prorsus",
+                       "participants" : 12,
+                       "interestId" : 11,
+                       "description" : "tuo vero id quidem, inquam, arbitratu. Tum Torquatus: Prorsus, inquit, assentior; Quod autem satis est, eo quicquid accessit, nimium est; Quid turpius quam sapientis vitam ex insipientium sermone pendere?",
+                       "location" : {
+                            "street" : "R.Teodoro Sampaio",
+                            "number" : "123",
+                            "district" : "Itaim Bibi",
+                            "city" : "São Paulo",
+                            "state": "SP",
+                            "zip" : "05405-000",
+                            "complement" : "apt 805",
+                            "latitude" : -23.557577,
+                            "longitude" : -46.677674
+                        },
+                        "partners": [
+                                {
+                                   "id": 2119223,
+                                   "name" : "Marisa",
+                                   "subTitleDescription" : "Tum Torquatus: Prorsus",
+                                   "participants" : 12,
+                                   "interestId" : 11,
+                                   "description" : "tuo vero id quidem, inquam, arbitratu. Tum Torquatus: Prorsus, inquit, assentior; Quod autem satis est, eo quicquid accessit, nimium est; Quid turpius quam sapientis vitam ex insipientium sermone pendere?",
+                                   "location" : {
+                                        "street" : "R.Teodoro Sampaio",
+                                        "number" : "123",
+                                        "district" : "Itaim Bibi",
+                                        "city" : "São Paulo",
+                                        "state": "SP",
+                                        "zip" : "05405-000",
+                                        "complement" : "apt 805",
+                                        "latitude" : -23.557577,
+                                        "longitude" : -46.677674
+                                    }
+                               },
+                               {
+                                   "id": 2123910,
+                                   "name" : "Bob's",
+                                   "subTitleDescription" : "Tum Torquatus: Prorsus",
+                                   "participants" : 30,
+                                   "interestId" : 13,
+                                   "description" : "tuo vero id quidem, inquam, arbitratu. Tum Torquatus: Prorsus, inquit, assentior; Quod autem satis est, eo quicquid accessit, nimium est; Quid turpius quam sapientis vitam ex insipientium sermone pendere?",
+                                   "location" : {
+                                        "street" : "R.Teodoro Sampaio",
+                                        "number" : "123",
+                                        "district" : "Itaim Bibi",
+                                        "city" : "São Paulo",
+                                        "state": "SP",
+                                        "zip" : "05405-000",
+                                        "complement" : "apt 805",
+                                        "latitude" : -23.557577,
+                                        "longitude" : -46.677674
+                                    }
+                                },
+                                {
+                                   "id": 415529,
+                                   "name" : "CNS",
+                                   "subTitleDescription" : "Tum Torquatus: Prorsus",
+                                   "participants" : 2,
+                                   "interestId" : 12,
+                                   "description" : "tuo vero id quidem, inquam, arbitratu. Tum Torquatus: Prorsus, inquit, assentior; Quod autem satis est, eo quicquid accessit, nimium est; Quid turpius quam sapientis vitam ex insipientium sermone pendere?",
+                                   "location" : {
+                                        "street" : "Goiania / GO",
+                                        "number" : "123",
+                                        "district" : "Itaim Bibi",
+                                        "city" : "São Paulo",
+                                        "state": "SP",
+                                        "zip" : "05405-000",
+                                        "complement" : "apt 805",
+                                        "latitude" : -23.557577,
+                                        "longitude" : -46.677674
+                                    }
+                                }
+                        ]
+                   },
+                   {
+                       "id": 477350,
+                       "name" : "Galeria do Rock",
+                       "subTitleDescription" : "Tum Torquatus: Prorsus",
+                       "participants" : 30,
+                       "interestId" : 13,
+                       "description" : "tuo vero id quidem, inquam, arbitratu. Tum Torquatus: Prorsus, inquit, assentior; Quod autem satis est, eo quicquid accessit, nimium est; Quid turpius quam sapientis vitam ex insipientium sermone pendere?",
+                       "startDate": "2015-04-11 01:18:07",
+                       "endDate": "2014-04-11 01:18:07",
+                       "location" : {
+                            "street" : "R.Teodoro Sampaio",
+                            "number" : "123",
+                            "district" : "Itaim Bibi",
+                            "city" : "São Paulo",
+                            "state": "SP",
+                            "zip" : "05405-000",
+                            "complement" : "apt 805",
+                            "latitude" : -23.557577,
+                            "longitude" : -46.677674
+                        },
+                        "partners": [
+                                {
+                                   "id": 678184,
+                                   "name" : "Kings Sneakers",
+                                   "subTitleDescription" : "Tum Torquatus: Prorsus",
+                                   "participants" : 12,
+                                   "interestId" : 11,
+                                   "description" : "tuo vero id quidem, inquam, arbitratu. Tum Torquatus: Prorsus, inquit, assentior; Quod autem satis est, eo quicquid accessit, nimium est; Quid turpius quam sapientis vitam ex insipientium sermone pendere?",
+                                   "location" : {
+                                        "street" : "R.Teodoro Sampaio",
+                                        "number" : "123",
+                                        "district" : "Itaim Bibi",
+                                        "city" : "São Paulo",
+                                        "state": "SP",
+                                        "zip" : "05405-000",
+                                        "complement" : "apt 805",
+                                        "latitude" : -23.557577,
+                                        "longitude" : -46.677674
+                                    }
+                               },
+                               {
+                                   "id": 156997,
+                                   "name" : "Jack Tattoo",
+                                   "subTitleDescription" : "Tum Torquatus: Prorsus",
+                                   "participants" : 30,
+                                   "interestId" : 13,
+                                   "description" : "tuo vero id quidem, inquam, arbitratu. Tum Torquatus: Prorsus, inquit, assentior; Quod autem satis est, eo quicquid accessit, nimium est; Quid turpius quam sapientis vitam ex insipientium sermone pendere?",
+                                   "location" : {
+                                        "street" : "R.Teodoro Sampaio",
+                                        "number" : "123",
+                                        "district" : "Itaim Bibi",
+                                        "city" : "São Paulo",
+                                        "state": "SP",
+                                        "zip" : "05405-000",
+                                        "complement" : "apt 805",
+                                        "latitude" : -23.557577,
+                                        "longitude" : -46.677674
+                                    }
+                                },
+                                {
+                                   "id": 237332,
+                                   "name" : "Fatum Store",
+                                   "subTitleDescription" : "Tum Torquatus: Prorsus",
+                                   "participants" : 2,
+                                   "interestId" : 12,
+                                   "description" : "tuo vero id quidem, inquam, arbitratu. Tum Torquatus: Prorsus, inquit, assentior; Quod autem satis est, eo quicquid accessit, nimium est; Quid turpius quam sapientis vitam ex insipientium sermone pendere?",
+                                   "location" : {
+                                        "street" : "Goiania / GO",
+                                        "number" : "123",
+                                        "district" : "Itaim Bibi",
+                                        "city" : "São Paulo",
+                                        "state": "SP",
+                                        "zip" : "05405-000",
+                                        "complement" : "apt 805",
+                                        "latitude" : -23.557577,
+                                        "longitude" : -46.677674
+                                    }
+                                }
+                        ]
+                    },
+                    {
+                       "id": 623307,
+                       "name" : "SESC Belenzinho",
+                       "subTitleDescription" : "Tum Torquatus: Prorsus",
+                       "participants" : 2,
+                       "interestId" : 12,
+                       "description" : "tuo vero id quidem, inquam, arbitratu. Tum Torquatus: Prorsus, inquit, assentior; Quod autem satis est, eo quicquid accessit, nimium est; Quid turpius quam sapientis vitam ex insipientium sermone pendere?",
+                       "location" : {
+                            "street" : "Goiania / GO",
+                            "number" : "123",
+                            "district" : "Itaim Bibi",
+                            "city" : "São Paulo",
+                            "state": "SP",
+                            "zip" : "05405-000",
+                            "complement" : "apt 805",
+                            "latitude" : -23.557577,
+                            "longitude" : -46.677674
+                        },
+                        "partners": [
+                                {
+                                   "id": 208096,
+                                   "name" : "Casa do Pão de Queijo",
+                                   "subTitleDescription" : "Tum Torquatus: Prorsus",
+                                   "participants" : 12,
+                                   "interestId" : 11,
+                                   "description" : "tuo vero id quidem, inquam, arbitratu. Tum Torquatus: Prorsus, inquit, assentior; Quod autem satis est, eo quicquid accessit, nimium est; Quid turpius quam sapientis vitam ex insipientium sermone pendere?",
+                                   "location" : {
+                                        "street" : "R.Teodoro Sampaio",
+                                        "number" : "123",
+                                        "district" : "Itaim Bibi",
+                                        "city" : "São Paulo",
+                                        "state": "SP",
+                                        "zip" : "05405-000",
+                                        "complement" : "apt 805",
+                                        "latitude" : -23.557577,
+                                        "longitude" : -46.677674
+                                    }
+                               },
+                               {
+                                   "id": 651256,
+                                   "name" : "Banco do Brasil",
+                                   "subTitleDescription" : "Tum Torquatus: Prorsus",
+                                   "participants" : 30,
+                                   "interestId" : 13,
+                                   "description" : "tuo vero id quidem, inquam, arbitratu. Tum Torquatus: Prorsus, inquit, assentior; Quod autem satis est, eo quicquid accessit, nimium est; Quid turpius quam sapientis vitam ex insipientium sermone pendere?",
+                                   "location" : {
+                                        "street" : "R.Teodoro Sampaio",
+                                        "number" : "123",
+                                        "district" : "Itaim Bibi",
+                                        "city" : "São Paulo",
+                                        "state": "SP",
+                                        "zip" : "05405-000",
+                                        "complement" : "apt 805",
+                                        "latitude" : -23.557577,
+                                        "longitude" : -46.677674
+                                    }
+                                },
+                                {
+                                   "id": 658683,
+                                   "name" : "Sapataria Mundial",
+                                   "subTitleDescription" : "Tum Torquatus: Prorsus",
+                                   "participants" : 2,
+                                   "interestId" : 12,
+                                   "description" : "tuo vero id quidem, inquam, arbitratu. Tum Torquatus: Prorsus, inquit, assentior; Quod autem satis est, eo quicquid accessit, nimium est; Quid turpius quam sapientis vitam ex insipientium sermone pendere?",
+                                   "location" : {
+                                        "street" : "Goiania / GO",
+                                        "number" : "123",
+                                        "district" : "Itaim Bibi",
+                                        "city" : "São Paulo",
+                                        "state": "SP",
+                                        "zip" : "05405-000",
+                                        "complement" : "apt 805",
+                                        "latitude" : -23.557577,
+                                        "longitude" : -46.677674
+                                    }
+                                }
+                        ]
+                    }]
+            }
+
+## /qrid/v1/locals/{id}
+### GET
+Local
+#####Additional Information 
+Return local details
+
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+    
+            {
+               "id": 1233412,
+               "name" : "VI Mobile Conf",
+               "subTitleDescription" : "Tollenda est",
+               "participants" : 12,
+               "coverPath" : "http://i.imgur.com/ePV83cy.jpg",
+               "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egone non intellego, quid sit don Graece, Latine voluptas? Quorum sine causa fieri nihil putandum est. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egone non intellego, quid sit don Graece, Latine voluptas? Quorum sine causa fieri nihil putandum est. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egone non intellego, quid sit don Graece, Latine voluptas? Quorum sine causa fieri nihil putandum est. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> </p>",
+               "startDate": "09:00",
+               "endDate": "22:00",
+               "isPartner": false,
+               "location" : {
+                    "street" : "Av. Dom Pedro I",
+                    "number" : "1525",
+                    "district" : "",
+                    "city" : "Guarujá",
+                    "state": "SP",
+                    "zip" : "11440-001",
+                    "complement" : "",
+                    "latitude" : 41.86854,
+                    "longitude" : -0.7901334
+                }
+            }
+            
+## /qrid/v1/locals/{id}/checkInOrOut
+### GET
+Locals checkin or checkout
+#####Additional Information 
+Return user current status on Local
+
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
+    + Body
+
+            {
+               "userId": 12412
+            }
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+               "checkInOrOut": true
+            }
+            
+# Group Upload
+<a id="Upload" ></a>
+
+## /qrid/v1/images
+### POST
+Upload Images
+#####Additional Information 
+The process to upload an image is based on two steps
+- 1: Call the images upload endpoint and get the returned ID and PATH image
+- 2: Call the update user profile including those parameters
+
++ Headers
+
+        Content-Type: multipart/form-data; boundary=boundary_string
+
++ Request (multipart/form-data; boundary=-----BOUNDARY)
+
+        -----BOUNDARY
+        Content-Disposition: form-data
+        Content-Type: image/jpeg
+        Content-Transfer-Encoding: base64
+
+        /9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0a
+        HBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIy
+        MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAABAAEDASIA
+        AhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFAEB
+        AAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AL+AD//Z
+        -----BOUNDARY
+
++ Response 201 (text/plain)
+
+        {
+            "photoPath" = "http://api.randomuser.me/portraits/med/women/86.jpg"
+        }
+
+# Group Contact Us
+<a id="ContactUs" ></a>
+
+## /qrid/v1/contact_us
+### POST
+QRid user can send a short message to QRid team.
++ Request (application/json)
+    + Headers
+
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
+    + Body
+
+            {
+                "userId": 123457,
+                "message": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim nibh ac tortor volutpat, vitae tempus nisi viverra. Phasellus pharetra porttitor ex id dapibus. In elementum lectus libero. Nunc vel felis mi. Mauris suscipit ipsum dui, et finibus ligula ultrices id. Maecenas consequat ipsum pulvinar odio fermentum fringilla eget eu lectus. Nulla sem ante, tristique cursus placerat vel, congue ut nulla. Vivamus sed tristique tellus, tincidunt lacinia nibh. Nam nisl ipsum, vehicula porttitor lorem et, pulvinar laoreet lorem."
+            }
+
++ Response 201 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+                "message" : "Message sent"
+            }
+            
+# Group Terms of Use
+<a id="Terms" ></a>
+
+## /qrid/v1/terms
+### GET
+QRid terms of use
++ Request (application/json)
+    + Headers
+
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+    
+            {
+                "tou": "<b>Política de Privacidade e <a href=\"http://google.com/\">Segurança QRid</a></b><br><br>QRid – Identidade Digital – <a href=\"http://google.com/\">Sistema de identidade</a> digital através de comunicação com Qrcode, Beacon e NFC.<br><br>Existem diversas maneiras de usar os serviços do QRid, a principal delas é a sua identificação digital em face das várias funcionalidades que o APP proporciona a você.<br><br>Proporcionaremos uma experiência inovadora e com várias possibilidades de interação a partir da instalação nosso APP no seu Smartphone. Você pode receber notificações de vários parceiros das TAGs escolhidas por você, poderá também receber ou ler informações relevantes de lojas, restaurantes, parques, museus, mercado de imóveis, etc. Tudo para ajudá-lo conectar-se com outras pessoas através do seu ID digital. Você será reconhecido automaticamente de forma rápida e fácil, em feiras e eventos corporativos ou não, e não será necessária nenhuma outra informação adicional. <br><br>É imprescindível que sejamos claros quanto ao modo como usamos suas informações e a maneira como protegeremos sua privacidade.<br><br>Nossa Política de Privacidade explica:<br>1. Quais informações coletamos.<br>2. Porque coletamos.<br>3. Como usamos essas informações.<br><br>Tentamos manter tudo o mais simples possível, mas, caso você não esteja familiarizado com termos como cookies, endereços de IP e navegadores, então (por favor) leia sobre esses “termos-chave” primeiro.<br><br><b>DEFINIÇÕES:<br>Cookies<br>Endereço de IP<br>Navegadores</b><br><br>Sua privacidade é importante para o QRid, portanto, solicitamos que reserve um tempo para conhecer nossas práticas e, caso tenha alguma dúvida, consulte nossos serviços.<br><br><b>1.0. Quais Informações coletamos?</b><br><br>Coletamos diversas informações desde dados básicos, como seus interesses diários, até informações mais complexas, como quanto tempo você reserva visualizando um site específico ou pessoas importantes para você e tudo isto com o único objetivo aprimorar a qualidade dos nossos serviços prestados aos usuários.<br><br>As informações são coletadas de oito maneiras: <br><br><b>1.1. Informações fornecidas por você.</b><br><br>Quando você instala o aplicativo QRid e perguntamos qual a forma de login você deseja usar e você aceita conectar-se por uma conta Google, Linkedin ou Facebook, todos os seus dados que já são públicos, como seu nome, endereço de e-mail, sexo e idade serão enviados para nosso banco de dados automaticamente. <br><br>Podemos pedir para completar o seu perfil QRid com seu nome, empresa, cargo, telefone, e-mail, foto para que você possa aproveitar ao máximo nossos recursos<br><br><b>1.2. Informações que pedimos a partir do uso que você faz de nossos serviços.</b><br><br>Podemos coletar informações dos serviços que você utiliza e como os usa, da mesma forma que é realizado quando você visita um website que utiliza nossos serviços de publicidade ou quando você interage com nossos parceiros.<br><br><b>1.3. Informações do dispositivo.</b><br><br>Informações específicas do dispositivo como o modelo do hardware, versão do sistema operacional, identificadores do produto, informações da rede móvel e, inclusive, número de telefone poderão ser coletadas.<br><br><b>1.4. Informações de registro.</b><br><br>Podemos coletar e armazenar automaticamente algumas informações em nosso servidor a partir do momento em que você utiliza os nossos serviços ou visualiza um conteúdo fornecido pelo QRid. <br><br>Isso pode incluir:<br><br><b>1.4.1.</b> Detalhes de como você usou nosso serviço, como suas consultas de pesquisa;<br><br><b>1.4.2.</b> Informações de quais Qrcode, Beacons ou NFC foram acessados;<br><br><b>1.4.3.</b> Durante quanto tempo foi acessado;<br><br><b>1.4.4.</b> Em que horário foi acessado;<br><br><b>1.4.5.</b> Se houve compartilhamento de algum conteúdo;<br><br><b>1.4.6.</b> Informações como problemas, atividade do sistema, configurações de hardware, tipo de navegador, idioma do navegador, data e horário de sua solicitação e URL de referência;<br><br><b>1.4.7.</b> Cookies que podem identificar exclusivamente seu navegador ou sua conta QRid;<br><br><b>1.5. Informações de localização.</b><br><br>Assim que você acessa, somos capazes de identificar sua localização, mais ainda, podemos usar várias tecnologias para determinar o local, como dados do sensor de seu dispositivo que podem, por exemplo, fornecer informações sobre Beacons mais próximos de acesso Wi-Fi e torres de celular.<br><br><b>1.6. Números de aplicativos exclusivos.</b><br><br>Determinados serviços incluem um número de aplicativo exclusivo. Este número e as informações sobre sua instalação, por exemplo, o tipo de sistema operacional e o número da versão do aplicativo devem ser enviados ao QRid quando você instalar ou desinstalar este serviço ou quando este serviço entrar em contato periodicamente com nossos servidores, como para atualizações automáticas.<br><br><b>1.7. Armazenamento local.</b><br><br>Podemos coletar e armazenar informações inclusive dados pessoais diretamente do seu dispositivo, usando mecanismos como o armazenamento no navegador da web (inclusive HTML 5) e caches de dados de aplicativo.<br><br><b>1.8. Cookies e identificadores anônimos.</b><br><br>Nós, junto aos nossos parceiros, usamos várias tecnologias para coletar e armazenar informações no momento que você visita um serviço do QRid e isso pode incluir o envio de um ou mais cookies ou identificadores anônimos para seu dispositivo. Usamos também cookies e identificadores anônimos quando você interage com os serviços que oferecemos a nossos parceiros, como serviços de publicidade ou recursos do QRid que podem aparecer em outros sites.<br><br><b>2.0. Por que coletamos informações.</b><br><br>Quando o usuário visita websites do nosso aplicativo, usamos as informações que são produzidas para:<br><br><b>2.1.</b> Produzir anúncios mais eficazes;<br><br><b>2.2.</b> Fornecer relatórios de atividades de anúncios a anunciantes e websites, que hospedam suas informações no QRid com objetivo de assegurar o pagamento aos seus editores;<br><br><b>2.3.</b> Ajudar proprietários de websites a compreender como os visitantes se relacionam com seus produtos;<br><br><b>2.4.</b> Melhorar a experiência do usuário do QRid;<br><br><b>2.5.</b> Detectar e defender-se de fraudes e outros riscos de segurança para proteger usuários e parceiros;<br><br><b>2.6.</b> Cumprir as obrigações assumidas com nossos usuários, além de criar ferramentas para sustentar nossas obrigações legais;<br><br><b>2.7.</b> Melhorar nossos produtos.<br><br><b>3.0. Como usamos essas informações.</b><br><br><b>3.1.</b>Para captar e analisar as informações colhidas de nossos usuários, utilizamos ferramentas específicas relacionadas e ativadas para tecnologia Qrid, que por sua vez produzem um banco de dados à disposição de nossos parceiros em sua busca de aprimoramento dos seus produtos.<br><br><b>3.2.</b>Ao liberar uma TAG de um produto ou serviço, por exemplo, de um tipo de comida, uma loja ou um local específico, você autoriza que nossos sistemas de comunicação interajam com seus equipamentos, possibilitando receber uma notificação ou então abrir uma mídia de um de nossos parceiros. Isso dará a possibilidade de criar conteúdos alinhados aos seus interesses e até mesmo avisá-lo de promoções.<br><br><b>4.0. Responsabilidade sobre conteúdos impróprios para menores de 18 anos.</b><br><br>QRid não se responsabiliza pelo acesso de conteúdos impróprios para menores de 18 anos de idade, que estejam vinculados como material do site de nossos anunciantes ou no portal.<br><br>Recomendamos que o usuário do aplicativo QRid providencie na inserção de senha de acesso no seu equipamento de navegação.<br><br><b>5.0 Responsabilidade sobre conteúdos ilícitos.</b><br><br>QRid reafirma sua posição de não permitir e denunciar qualquer material que circule em nosso portal de conteúdo racista, pedófilo, exploração do trabalho de menores ou conteúdo pornográfico explícito, reservando-nos a RETIRAR a matéria inclusive SEM AVISO prévio aos seus editores.<br><br><b>6.0. Política de Segurança.</b><br><br>QRid nunca envia arquivos executáveis ou solicitação de dados pessoais. Para sua segurança, ao receber uma comunicação digital de QRid acesse nosso portal e confirme a autenticidade do comunicado. Além disso, mantenha atualizado o antivírus do seu equipamento.<br><br>Recomendamos que nosso aplicativo não seja visualizado por condutores de qualquer tipo de veículo, enquanto estiverem dirigindo."
+            }
+
+# Group Tags
+<a id="Tags" ></a>
+
+Search for qrcode or beacon tags, some tag examples here http://imgur.com/a/dJZSr
+
+## /qrid/v1/tag/412he124h15
+### GET
+Example tag for user.
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
+    + Body
+
+            {
+                "tag": 412he124h15
+            }
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+                "type": 1,
+                "typeDescription": "user",
+                "data": {
+                    "badgeName": "Bruna",
+                    "birthday": "2011-08-10",
+                    "cellphone": "55 11 99527-4477",
+                    "companyName": "Origami",
+                    "country": "Brasil",
+                    "cpf": "34028342864",
+                    "created": "2011-08-10 08:37:46",
+                    "email": "bruna@gmail.com",
+                    "firstName": "Bruna",
+                    "gender": true,
+                    "isBrazilian": true,
+                    "lastName": "Santos",
+                    "location": {
+                        "city": "São Paulo",
+                        "complement": "apt 805",
+                        "district": "Itaim Bibi",
+                        "latitude": -23.557577,
+                        "longitude": -46.677674,
+                        "number": "123",
+                        "state": "SP",
+                        "street": "R.Teodoro Sampaio",
+                        "zip": "05405-206"
+                    },
+                    "login": "Bruna@gmail.com",
+                    "passportNumber": "ZE184226B",
+                    "password": "SenhaSegura",
+                    "photo": "http://api.randomuser.me/portraits/med/women/15.jpg",
+                    "position": "CEO",
+                    "qrcodePath": "http://i.imgur.com/r7sl8or.png",
+                    "telephone": "55 11 2546-1166",
+                    "timezone": "UTC",
+                    "updated": "2014-04-11 01:18:07",
+                    "userId": 11111
+                }
+            }
+            
+## /qrid/v1/tag/057cgu2n57n
+### GET
+Example tag for stand.
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+                "type": 2,
+                "typeDescription": "stand",
+                "data": {
+                    "id": 123341,
+                    "name": "Bourbon Shopping",
+                    "participants": 12,
+                    "location": {
+                        "street": "R.Teodoro Sampaio",
+                        "number": "123",
+                        "district": "Itaim Bibi",
+                        "city": "São Paulo",
+                        "state": "SP",
+                        "zip": "05405-000",
+                        "complement": "apt 805",
+                        "latitude": -23.557577,
+                        "longitude": -46.677674
+                    }
+                }
+            }
+            
+## /qrid/v1/tag/1j47sbty413j5
+### GET
+Example tag for product.
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+                "type": 3,
+                "typeDescription": "product",
+                "data": {
+                    "id": 123341,
+                    "name": "TODO"
+                }
+            }
+            
+## /qrid/v1/tag/472hfj385j13b
+### GET
+Example tag for local.
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+
+            {
+                "type": 4,
+                "typeDescription": "local",
+                "data": {
+                   "id": 1233412,
+                   "name" : "VI Mobile Conf",
+                   "subTitleDescription" : "Tollenda est",
+                   "participants" : 12,
+                   "coverPath" : "http://i.imgur.com/ePV83cy.jpg",
+                   "description" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egone non intellego, quid sit don Graece, Latine voluptas? Quorum sine causa fieri nihil putandum est. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egone non intellego, quid sit don Graece, Latine voluptas? Quorum sine causa fieri nihil putandum est. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egone non intellego, quid sit don Graece, Latine voluptas? Quorum sine causa fieri nihil putandum est. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> </p>",
+                   "startDate": "09:00",
+                   "endDate": "22:00",
+                   "isPartner": false,
+                   "location" : {
+                        "street" : "Av. Dom Pedro I",
+                        "number" : "1525",
+                        "district" : "",
+                        "city" : "Guarujá",
+                        "state": "SP",
+                        "zip" : "11440-001",
+                        "complement" : "",
+                        "latitude" : 41.86854,
+                        "longitude" : -0.7901334
+                    }
+                }
+            }
+            
