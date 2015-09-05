@@ -1043,6 +1043,60 @@ Return local details
                 }
             }
             
+
+## /qrid/v1/locals/{id}/interests
+### GET
+Local interests
+
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+    
+            {
+               [
+                   {
+                      "id": 1,
+                      "description" : "Anime",
+                      "isChecked" : false,
+                      "isPartner" : false
+                   },
+                   {
+                      "id": 2,
+                      "description" : "Alimentação",
+                      "isChecked" : false,
+                      "isPartner" : false
+                   },
+                   {
+                      "id": 3,
+                      "description" : "Tecnologia",
+                      "isChecked" : true,
+                      "isPartner" : false
+                   },
+                   {
+                      "id": 4,
+                      "description" : "TV",
+                      "isChecked" : false,
+                      "isPartner" : false
+                   },
+                   {
+                      "id": 5,
+                      "description" : "Cult",
+                      "isChecked" : false,
+                      "isPartner" : false
+                   }
+               ]
+            }
+          
+
 ## /qrid/v1/locals/{id}/checkInOrOut
 ### GET
 Locals checkin or checkout
