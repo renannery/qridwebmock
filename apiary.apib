@@ -370,8 +370,8 @@ Return user profile
             }
             
             
-## /qrid/v1/users/{id}/checkin/{localId, checkin}
-### POST
+## /qrid/v1/users/{userId}/checkin/{localId, checkin}
+### GET
 Return user profile 
 
 + Parameters
@@ -393,14 +393,12 @@ Return user profile
     + Body
 
             {
-                "accessToken": "SASD!@#ASXAS-UPDATE",
                 "badgeName": "Carolina",
                 "birthday": "2011-08-10",
                 "cellphone": "55 11 99527-4477",
                 "companyName": "Origami",
                 "country": "Brasil",
                 "cpf": "34028342864",
-                "created": "2011-08-10 08:37:46",
                 "email": "angelicaupdate@gmail.com",
                 "firstName": "Carolina",
                 "gender": true,
@@ -418,15 +416,11 @@ Return user profile
                     "zip": "05405-206"
                 },
                 "login": "angelicaupdate@gmail.com",
-                "passportNumber": "ZE184226B",
-                "password": "SenhaSegura",
                 "photo": "http://api.randomuser.me/portraits/med/women/82.jpg",
                 "position": "CEO",
                 "currentLocalId": 1233412,
                 "qrcodePath": "http://i.imgur.com/r7sl8or.png",
                 "telephone": "55 11 2546-1166",
-                "timezone": "UTC",
-                "updated": "2014-04-11 01:18:07",
                 "userId": 11111
             }
             
@@ -1728,6 +1722,7 @@ Example tag for local.
             {
                 "type": 4,
                 "typeDescription": "local",
+                "hasToCheckIn" : "true",
                 "data": {
                    "id": 1233412,
                    "name" : "VI Mobile Conf",
