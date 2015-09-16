@@ -370,7 +370,7 @@ Return user profile
             }
             
             
-## /qrid/v1/users/{userId}/checkIn/{localId, checkIn}
+## /qrid/v1/users/{userId}/checkIn{localId, checkIn}
 ### GET
 CheckIn or Out user on Locals
 
@@ -1427,35 +1427,6 @@ Local interests
                ]
           
 
-## /qrid/v1/locals/{id}/checkInOrOut
-### GET
-Locals checkin or checkout
-#####Additional Information 
-Return user current status on Local
-
-+ Request (application/json)
-    + Headers
-    
-            Accept: application/json
-            Accept-Language: da, en-gb, pt-BR
-
-    + Body
-
-            {
-               "userId": 12412
-            }
-
-+ Response 200 (application/json)
-    + Headers
-    
-            Content-Language: pt-BR
-            
-    + Body
-
-            {
-               "checkInOrOut": true
-            }
-            
 # Group Upload
 <a id="Upload" ></a>
 
