@@ -97,6 +97,15 @@ Log in.
 ## /qrid/v1/users/register
 ### POST
 Register.
+
+Social Login types:
+
+    -> Without social login: -1
+    -> Facebook: 1
+    -> Google: 2
+    -> Linkedin: 3
+ 
+ 
 + Request (application/json)
     + Headers
 
@@ -116,6 +125,8 @@ Register.
                 "email": "angelicaregistro@gmail.com",
                 "firstName": "Carolina",
                 "gender": true,
+                "socialLoginId": "",
+                "socialLoginType": -1,
                 "isBrazilian": true,
                 "lastName": "Santos",
                 "location": {
@@ -160,6 +171,8 @@ Register.
                 "email": "angelicaregistro@gmail.com",
                 "firstName": "Carolina",
                 "gender": true,
+                "socialLoginId": "",
+                "socialLoginType": -1,
                 "isBrazilian": true,
                 "lastName": "Santos",
                 "location": {
