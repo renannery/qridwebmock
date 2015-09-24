@@ -323,7 +323,6 @@ Register update.
             
             
             
-            
 ## /qrid/v1/users/{id}
 ### GET
 Return user profile 
@@ -652,6 +651,60 @@ Save user's interests
     
             Content-Language: pt-BR
             
+
+## /qrid/v1/users/{id}/interests/locals
+### POST
+Save user's interests in locals
+
++ Parameters
+    + id (required, integer) ... Local id
+    
++ Request (application/json)
+    + Headers
+
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-Br
+    + Body
+
+            [
+                {
+                   "id": 1121312,
+                   "isChecked" : true
+                },
+                {
+                   "id": 12321312,
+                   "isChecked" : false
+                },
+                {
+                   "id": 312321,
+                   "isChecked" : true
+                },
+                {
+                   "id": 41231,
+                   "isChecked" : false
+                },
+                {
+                   "id": 512123,
+                   "isChecked" : true
+                },
+                {
+                   "id": 61231321,
+                   "isChecked" : true
+                },
+                {
+                   "id": 7123123,
+                   "isChecked" : true
+                },
+                {
+                   "id": 81231311,
+                   "isChecked" : true
+                }
+            ]
+            
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
     
 
 # Group Locals
