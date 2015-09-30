@@ -673,6 +673,49 @@ Save user's interests in locals
     + Headers
     
             Content-Language: pt-BR
+
+
+
+## /qrid/v1/users/{id}/cards
+### GET
+Get user's credit cards
+
++ Parameters
+    + id (required, integer) ... User id
+    
++ Request (application/json)
+    + Headers
+
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-BR
+            
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+    
+    + Body
+
+            [
+                {
+                    "id": 1233412,
+                    "name": "Visa",
+                    "number": "4444 2323 4521 2123",
+                    "exp": "12/17"
+                },
+                {
+                    "id": 1233413,
+                    "name": "Mastercard",
+                    "number": "2111 2421 7584 2378",
+                    "exp": "02/18"
+                },
+                {
+                    "id": 1233414,
+                    "name": "American Express",
+                    "number": "4444 2323 4521 2123",
+                    "exp": "05/17"
+                }
+            ]
     
 
 # Group Locals
