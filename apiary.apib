@@ -767,6 +767,37 @@ Get user's credit cards
                     "exp": "05/17"
                 }
             ]
+
+
+## /qrid/v1/users/{id}/cards
+### POST
+Add a credit card
+
++ Parameters
+    + id (required, integer) ... User id
+    
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-Br
+
+
+    + Body
+    
+            {
+                "name": "American Express",
+                "number": "4444 2323 4521 2123",
+                "expMonth": "05",
+                "expYear": "17",
+                "securityCode": "2684"
+            }
+
+            
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
     
 
 # Group Locals
