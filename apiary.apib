@@ -757,19 +757,19 @@ Get user's credit cards
             [
                 {
                     "id": 1233412,
-                    "name": "Visa",
+                    "brandName": "Visa",
                     "number": "4444 2323 4521 2123",
                     "exp": "12/17"
                 },
                 {
                     "id": 1233413,
-                    "name": "Mastercard",
+                    "brandName": "Mastercard",
                     "number": "2111 2421 7584 2378",
                     "exp": "02/18"
                 },
                 {
                     "id": 1233414,
-                    "name": "American Express",
+                    "brandName": "American Express",
                     "number": "4444 2323 4521 2123",
                     "exp": "05/17"
                 }
@@ -793,7 +793,7 @@ Add a credit card
     + Body
     
             {
-                "name": "American Express",
+                "owner": "American Express",
                 "number": "4444 2323 4521 2123",
                 "expMonth": "05",
                 "expYear": "17",
@@ -1523,6 +1523,46 @@ Gogle Cloud Console Product detail
                "price" : 5.15,
                "coverPath" : "http://i.imgur.com/cqjYaTG.png",
                "info" : "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egone non intellego, quid sit don Graece, Latine voluptas? Quorum sine causa fieri nihil putandum est. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egone non intellego, quid sit don Graece, Latine voluptas? Quorum sine causa fieri nihil putandum est. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Primum divisit ineleganter; Facillimum id quidem est, inquam. Iam id ipsum absurdum, maximum malum neglegi. Itaque nostrum est-quod nostrum dico, artis est-ad ea principia, quae accepimus. Suo genere perveniant ad extremum; Nunc omni virtuti vitium contrario nomine opponitur. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Egone non intellego, quid sit don Graece, Latine voluptas? Quorum sine causa fieri nihil putandum est. Ergo ita: non posse honeste vivi, nisi honeste vivatur? <a href='http://loripsum.net/' target='_blank'>Duo Reges: constructio interrete.</a> </p>"
+            }
+
+
+## /qrid/v1/products/{id}/buy
+### POST
+Product payment
+
++ Parameters
+    + id (required, integer) ... Product id
+    
++ Request (application/json)
+    + Headers
+    
+            Accept: application/json
+            Accept-Language: da, en-gb, pt-Br
+
+
+    + Body
+    
+            {
+                "id": 1233412,
+                "userId: 6564514,
+                "brandName": "Visa",
+                "owner": "American Express",
+                "number": "4444 2323 4521 2123",
+                "expMonth": "05",
+                "expYear": "17",
+                "securityCode": "2684"
+            }
+
+
++ Response 200 (application/json)
+    + Headers
+    
+            Content-Language: pt-BR
+            
+    + Body
+    
+            {
+                "message" : "Pagamento efetuado com sucesso!"
             }
             
             
