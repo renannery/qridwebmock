@@ -38,9 +38,12 @@ QRid push notifications can be sent using Parse SDK API REST https://www.parse.c
   "typeDescription": "product" 
 }
 
+The above example will send a notification to all registered users in Parse database. If you want to sent a notification filtering by user, the attribute 'userId' must be defined.
+
 - `alert` - Notification message
 - `data` - Notification intent body
 - `type` - Integer value representing type of screen that will be open after user touch on notification 
+- `userId` - User id stored in QRid backend database 
 - `typeDescription` - String value to indicate type in a more readeble way
 
 # Group Users
