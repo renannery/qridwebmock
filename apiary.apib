@@ -26,6 +26,23 @@ This documentation covers the core resources you can used to manipulate objects 
 - 429 `Too Many Requests` - Exceeded QRid API limits. Pause requests, wait one minute, and try again. 
 - 503 `Service Unavailable` - The service is temporary unavailable (e.g. scheduled Platform Maintenance). Try again later.
 
+#Push Notifications
+QRid push notifications can be sent using Parse SDK API REST https://www.parse.com/docs/rest/guide following body below
+>**Notification JsonBody:** { 
+  "alert": "Estetoscopios especiais a venda na Fibra Cirúrgica", 
+  "data": { 
+    "id": 3298909, 
+    "name": "Estetoscopio Littmann" 
+  }, 
+  "type": 4, 
+  "typeDescription": "product" 
+}
+
+- `alert` - Notification message
+- `data` - Notification intent body
+- `type` - Integer value representing type of screen that will be open after user touch on notification 
+- `typeDescription` - String value to indicate type in a more readeble way
+
 # Group Users
 <a id="Users" ></a>
 
